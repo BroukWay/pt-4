@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите целое число N (>0): ");
+        int N = int.Parse(Console.ReadLine());
+
+        if (N <= 0)
+        {
+            Console.WriteLine("Число должно быть больше 0.");
+            return;
+        }
+
+        bool containsTwo = false;
+        
+        while (N > 0)
+        {
+            int digit = N % 10;  // Получаем последнюю цифру
+            if (digit == 2)
+            {
+                containsTwo = true;
+                break;
+            }
+            N /= 10;  // Убираем последнюю цифру
+        }
+
+        Console.WriteLine(containsTwo ? "TRUE" : "FALSE");
+    }
+}
