@@ -1,0 +1,58 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите количество чисел N: ");
+        int N = int.Parse(Console.ReadLine());
+
+        if (N < 2)
+        {
+            Console.WriteLine("Набор должен содержать по крайней мере два элемента.");
+            return;
+        }
+
+        int[] numbers = new int[N];
+        Console.WriteLine("Введите элементы набора:");
+        for (int i = 0; i < N; i++)
+        {
+            numbers[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Поиск индексов последних двух нулей
+        int lastZeroIndex = -1;
+        int secondLastZeroIndex = -1;
+
+        for (int i = N - 1; i >= 0; i--)
+        {
+            if (numbers[i] == 0)
+            {
+                if (lastZeroIndex == -1)
+                {
+                    lastZeroIndex = i;
+                }
+                else
+                {
+                    secondLastZeroIndex = i;
+                    break;
+                }
+            }
+        }
+
+        if (secondLastZeroIndex == -1 || lastZeroIndex == -1)
+        {
+            Console.WriteLine("Набор должен содержать по крайней мере два нуля.");
+            return;
+        }
+
+        // Вычисление суммы между последними двумя нулями
+        int sum = 0;
+        for (int i = secondLastZeroIndex + 1; i < lastZeroIndex; i++)
+        {
+            sum += numbers[i];
+        }
+
+        Console.WriteLine("Сумма чисел между последними двумя нулями: " + sum);
+    }
+}
